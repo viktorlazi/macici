@@ -1,0 +1,104 @@
+{
+  "kittens": [
+    {
+      "name": "Ksim",
+      "colour": "white black",
+      "age": 1
+    },
+    {
+      "name": "Oliver",
+      "colour": "white",
+      "age": 2
+    },
+    {
+      "name": "Luka",
+      "colour": "striped",
+      "age": 1
+    },
+    {
+      "name": "Bella",
+      "colour": "grey",
+      "age": 1
+    },
+    {
+      "name": "Iris",
+      "colour": "grey",
+      "age": 1
+    },
+    {
+      "name": "Lav",
+      "colour": "white orange",
+      "age": 1
+    },
+    {
+      "name": "Lujo",
+      "colour": "striped",
+      "age": 1
+    },
+    {
+      "name": "Brico",
+      "colour": "white black",
+      "age": 1
+    },
+    {
+      "name": "Bingo",
+      "colour": "white black",
+      "age": 1
+    },
+    {
+      "name": "Sjena",
+      "colour": "grey",
+      "age": 1
+    },
+    {
+      "name": "Tigar",
+      "colour": "grey",
+      "age": 1
+    },
+    {
+      "name": "Artur",
+      "colour": "striped",
+      "age": 1
+    },
+    {
+      "name": "Mate",
+      "colour": "orange",
+      "age": 1
+    },
+    {
+      "name": "Maja",
+      "colour": "black white",
+      "age": 1
+    },
+    {
+      "name": "Glavni",
+      "colour": "orange",
+      "age": 1
+    },
+    {
+      "name": "Alex",
+      "colour": "striped",
+      "age": 1
+    },
+    {
+      "name": "Mars",
+      "colour": "white",
+      "age": 1
+    },
+    {
+      "name": "Homer",
+      "colour": "mixed",
+      "age": 1
+    },
+    {
+      "name": "Tino",
+      "colour": "mixed",
+      "age": 1
+    },
+    {
+      "name": "Sivi",
+      "colour": "grey",
+      "age": 1
+    }
+  ]
+}
