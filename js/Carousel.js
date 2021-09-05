@@ -6,7 +6,7 @@ class Carousel{
   scrollAmount;
   shouldAutoScroll = true;
 
-  constructor(carousel){
+  constructor(carousel, kittens){
     this.carouselItems = carousel.querySelector('.carousel-items');
     this.leftArrow = carousel.querySelector('.arrows .left-arrow');
     this.rightArrow = carousel.querySelector('.arrows .right-arrow');
@@ -19,6 +19,7 @@ class Carousel{
       this.moveSlideForwards();
       this.shouldAutoScroll = false;
     });
+    this.addSlidesToCarousel(kittens);
     this.initAutoScrolling;
   }
   initAutoScrolling = setInterval(() =>{
@@ -53,6 +54,24 @@ class Carousel{
       this.carouselItems.children[this.activeSlide-1].classList.add('active');
       this.activeSlide--;
     }
+  }
+  addSlidesToCarousel = (items) =>{
+    this.carouselItems.innerHTML = '';
+    items.forEach((e) =>{
+      this.carouselItems.appendChild(this.createSlide(e.name));
+    });
+    this.carouselItems.children[0].classList.add('active');
+  }
+  createSlide = (name) =>{
+    const slide = document.createElement('div');
+    slide.setAttribute('class', 'carousel-item');    
+    const image = document.createElement('img');
+    image.setAttribute('src', `./assets/${name}.jpg`)
+    slide.appendChild(image);
+    const h1 = document.createElement('h1');
+    h1.innerHTML = name;
+    slide.appendChild(h1);
+    return slide;
   }
 }
 export default Carousel;
