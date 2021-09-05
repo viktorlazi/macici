@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.carousel {
+  position: relative;
+  width: 800px;
+  margin: 50px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.carousel #carouselItems {
+  display: flex;
+  overflow: hidden;
+}
+.carousel #carouselItems .carousel-item {
+  position: relative;
+  opacity: 0.3;
+  transition: opacity 0.5s;
+}
+.carousel #carouselItems .carousel-item img {
+  width: 300px;
+  margin: 0 50px;
+}
+.carousel #carouselItems .carousel-item h1 {
+  font-family: "Ubuntu";
+  font-size: 80px;
+  color: white;
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  margin: 0;
+  transform: translateY(-50%);
+}
+.carousel #carouselItems .carousel-item.active {
+  transition: transform 2s;
+  opacity: 1;
+  z-index: 1;
+  cursor: pointer;
+}
+.carousel #carouselItems .carousel-item.active:hover {
+  transform: scale(1.05);
+}
+.carousel #carouselItems .carousel-item:first-child {
+  margin-left: 200px;
+}
+.carousel #carouselItems .carousel-item:last-child {
+  margin-right: 200px;
+}
+.carousel .arrows {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  width: 100%;
+}
+.carousel .arrows button {
+  border: none;
+  outline-offset: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.carousel .arrows #leftArrow {
+  margin-left: 20px;
+}
+.carousel .arrows #rightArrow {
+  margin-right: 20px;
+}/*# sourceMappingURL=index.css.map */
