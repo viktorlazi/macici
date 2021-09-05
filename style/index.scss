@@ -11,7 +11,7 @@ body{
   margin: 50px 0;
   user-select: none;
   
-  #carouselItems{
+  .carousel-items{
     display:flex;
     overflow: hidden;
     .carousel-item{
@@ -64,10 +64,10 @@ body{
       border-radius: 40px;
       cursor: pointer;
     }
-    #leftArrow{
+    .left-arrow{
       margin-left: 20px;
     }
-    #rightArrow{
+    .right-arrow{
       margin-right: 20px;
     }
   }
