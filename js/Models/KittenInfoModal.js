@@ -2,19 +2,19 @@ class KittenInfoModal{
   modal;
   modalContent;
   closeSpan;
+  button;
 
   constructor(name, colour, age){
     this.createModal();
-    this.modalContent.appendChild(
+    this.modalContent.prepend(
       this.formatContentText(name, colour, age)
     );
-
     this.closeSpan.addEventListener('click', () =>{
       this.modal.remove();
       delete this;
     });
     window.addEventListener('click', (e) =>{
-      if (e.target == this.modal) {
+      if(e.target == this.modal){
         this.modal.remove();
         delete this;
       }
@@ -28,7 +28,7 @@ class KittenInfoModal{
 
     name.innerHTML = 'Ime: ' + _name;
     colour.innerHTML = 'Boja: ' + _colour;
-    age.innerHTML = 'Dob: ' + _age;
+    age.innerHTML = 'Dob: ' + _age + ' mjeseca';
     
     const content = document.createElement('div');
     content.appendChild(name);
@@ -44,21 +44,17 @@ class KittenInfoModal{
     const close = document.createElement('span');
     close.setAttribute('class', 'close');
     close.innerHTML = '&times;';
+    const button = document.createElement('button');
+    button.innerHTML = 'udomi';
 
-    this.closeSpan = close;    
-    modal.appendChild(modalContent);
+    
     modalContent.appendChild(close);
+    modalContent.appendChild(button);
+    modal.appendChild(modalContent);
+    
+    this.closeSpan = close;    
     this.modalContent = modalContent;
     this.modal = modal;
   }
 }
 export default KittenInfoModal;
-
-/*
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-</div>
-*/

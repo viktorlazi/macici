@@ -69,18 +69,66 @@ body {
   border-radius: 40px;
   cursor: pointer;
 }
-.carousel .arrows .left-arrow {
+.carousel .arrows button.left-arrow {
   margin-left: 20px;
 }
-.carousel .arrows .right-arrow {
+.carousel .arrows button.right-arrow {
   margin-right: 20px;
 }
 
+.kitten-manager {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+.kitten-manager .filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 .kitten-manager .filters .search-box {
   padding: 5px;
   outline: none;
   margin: 10px;
   width: 200px;
+}
+.kitten-manager .filters .check-boxes {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.kitten-manager .filters .check-boxes div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.kitten-manager .filters .check-boxes input {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+.kitten-manager .filters .check-boxes label {
+  cursor: pointer;
+}
+.kitten-manager .kitten-grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(5, 1fr);
+}
+.kitten-manager .kitten-grid .card {
+  width: 200px;
+  box-shadow: 5px 5px 10px 6px #bebebe;
+}
+.kitten-manager .kitten-grid .card .info {
+  padding: 5px;
+}
+.kitten-manager .kitten-grid .card img {
+  width: 100%;
+}
+.kitten-manager .kitten-grid .card p {
+  margin: 0;
 }
 .kitten-manager button {
   margin-top: 20px;
@@ -101,6 +149,7 @@ body {
 }
 
 .modal {
+  font-family: "Ubuntu";
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -113,28 +162,21 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: black;
   background-color: rgba(0, 0, 0, 0.4);
 }
-
-.modal-content {
+.modal .modal-content {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
 }
-
-.close {
+.modal .close {
   color: #aaaaaa;
-  float: right;
+  position: absolute;
   font-size: 28px;
   font-weight: bold;
 }
-
-.close:hover,
-.close:focus {
+.modal .close:hover, .modal .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;

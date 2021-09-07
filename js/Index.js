@@ -1,4 +1,4 @@
-import Carousel from "./Carousel.js";
+import Carousel from "./Models/Carousel.js";
 import KittensService from './Services/KittensService.js';
 
 class Index{

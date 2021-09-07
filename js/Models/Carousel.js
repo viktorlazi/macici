@@ -7,7 +7,6 @@ class Carousel{
   kittensInfo;
 
   constructor(carousel, kittens, initialSlide=0){
-    this.carousel = carousel;
     this.kittensInfo = kittens;
     this.carouselItems = carousel.querySelector('.carousel-items');
     this.addSlidesToCarousel(kittens);
@@ -90,10 +89,10 @@ class Carousel{
   addSlidesToCarousel = (items) =>{
     this.carouselItems.innerHTML = '';
     items.forEach((e) =>{
-      this.carouselItems.appendChild(this.createSlide(e.name));
+      this.carouselItems.appendChild(this.createSlideElement(e.name));
     });
   }
-  createSlide = (name) =>{
+  createSlideElement = (name) =>{
     const slide = document.createElement('div');
     slide.setAttribute('class', 'carousel-item');    
     const img = document.createElement('img');
