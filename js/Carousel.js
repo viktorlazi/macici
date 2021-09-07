@@ -1,22 +1,44 @@
+import KittenInfoModal from "./KittenInfoModal.js";
+
 class Carousel{
   carouselItems;
-  activeSlide;
+  activeSlideIndex;
   scrollAmount;
+  kittensInfo;
 
   constructor(carousel, kittens, initialSlide=0){
+    this.carousel = carousel;
+    this.kittensInfo = kittens;
     this.carouselItems = carousel.querySelector('.carousel-items');
     this.addSlidesToCarousel(kittens);
     this.scrollAmount = carousel.offsetWidth / 2;
-    this.activeSlide = initialSlide < kittens.length? initialSlide:0;
+    this.activeSlideIndex = initialSlide < kittens.length? initialSlide:0;
     this.setInitialSlide();
     this.initArrowEventListeners(carousel);
     this.initAutoScrolling;
   }
+  openModal = () =>{
+    const kittenInfo = this.kittensInfo[this.activeSlideIndex];
+    document.body.appendChild(new KittenInfoModal(
+      kittenInfo.name,
+      kittenInfo.colour,
+      kittenInfo.age
+    ));
+  }
   setInitialSlide = () =>{
     this.carouselItems.scrollTo({
-      left: this.scrollAmount*this.activeSlide
+      left: this.scrollAmount*this.activeSlideIndex
     });
-    this.carouselItems.children[this.activeSlide].classList.add('active');
+    this.carouselItems.children[this.activeSlideIndex].classList.add('active');
+    this.setClickListenerForActiveSlide();
+  }
+  setClickListenerForActiveSlide = () =>{
+    this.carouselItems.children[this.activeSlideIndex]
+    .addEventListener('click', this.openModal);
+  }
+  removeClickListenerForActiveSlide = () =>{
+    this.carouselItems.children[this.activeSlideIndex]
+    .removeEventListener('click', this.openModal);
   }
   initArrowEventListeners = (carousel) =>{
     const leftArrow = carousel.querySelector('.arrows .left-arrow');
@@ -31,11 +53,11 @@ class Carousel{
     });
   }
   initAutoScrolling = setInterval(() =>{
-    const activeSlideIsHovered = this.carouselItems.querySelector('.active:hover');
-    if(this.activeSlide === 3){
+    const activeSlideIsHoveredIndex = this.carouselItems.querySelector('.active:hover');
+    if(this.activeSlideIndex === 3){
       clearInterval(this.initAutoScrolling);
     }
-    if(!activeSlideIsHovered && !document.hidden){
+    if(!activeSlideIsHoveredIndex && !document.hidden){
       this.moveSlideForwards();
     }
   }, 3000);
@@ -44,10 +66,12 @@ class Carousel{
       left: this.scrollAmount,
       behavior: 'smooth'
     });
-    if(this.activeSlide < 3){
-      this.carouselItems.children[this.activeSlide].classList.remove('active');
-      this.carouselItems.children[this.activeSlide+1].classList.add('active');
-      this.activeSlide++;
+    if(this.activeSlideIndex < 3){
+      this.removeClickListenerForActiveSlide();
+      this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
+      this.carouselItems.children[this.activeSlideIndex+1].classList.add('active');
+      this.activeSlideIndex++;
+      this.setClickListenerForActiveSlide();
     }
   }
   moveSlideBackwards = () =>{
@@ -55,10 +79,12 @@ class Carousel{
       left: -this.scrollAmount,
       behavior: 'smooth'
     });
-    if(this.activeSlide){
-      this.carouselItems.children[this.activeSlide].classList.remove('active');
-      this.carouselItems.children[this.activeSlide-1].classList.add('active');
-      this.activeSlide--;
+    if(this.activeSlideIndex){
+      this.removeClickListenerForActiveSlide();
+      this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
+      this.carouselItems.children[this.activeSlideIndex-1].classList.add('active');
+      this.activeSlideIndex--;
+      this.setClickListenerForActiveSlide();
     }
   }
   addSlidesToCarousel = (items) =>{
