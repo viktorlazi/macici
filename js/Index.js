@@ -18,10 +18,10 @@ class Index{
   }
   getYoungestKittensAsync = async (amount) =>{
     let kittens = await this.kittens;
-    if(amount > kittens.length){
-      return this.sortByAge(kittens.kittens);
+    if(amount >= kittens.length){
+      return this.sortByAge(kittens);
     }
-    return this.sortByAge(kittens.kittens).slice(0, amount);
+    return this.sortByAge(kittens).slice(0, amount);
   }
   sortByAge = (arr) =>{
     return arr.sort((a,b)=>{

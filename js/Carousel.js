@@ -1,39 +1,46 @@
 class Carousel{
   carouselItems;
-  leftArrow;
-  rightArrow;
-  activeSlide = 0;
+  activeSlide;
   scrollAmount;
-  shouldAutoScroll = true;
 
-  constructor(carousel, kittens){
+  constructor(carousel, kittens, initialSlide=0){
     this.carouselItems = carousel.querySelector('.carousel-items');
-    this.leftArrow = carousel.querySelector('.arrows .left-arrow');
-    this.rightArrow = carousel.querySelector('.arrows .right-arrow');
-    this.scrollAmount = carousel.offsetWidth/2;
-    this.leftArrow.addEventListener('click', () =>{
-      this.moveSlideBackwards();
-      this.shouldAutoScroll = false;
-    });
-    this.rightArrow.addEventListener('click', () =>{
-      this.moveSlideForwards();
-      this.shouldAutoScroll = false;
-    });
     this.addSlidesToCarousel(kittens);
+    this.scrollAmount = carousel.offsetWidth / 2;
+    this.activeSlide = initialSlide < kittens.length? initialSlide:0;
+    this.setInitialSlide();
+    this.initArrowEventListeners(carousel);
     this.initAutoScrolling;
   }
+  setInitialSlide = () =>{
+    this.carouselItems.scrollTo({
+      left: this.scrollAmount*this.activeSlide
+    });
+    this.carouselItems.children[this.activeSlide].classList.add('active');
+  }
+  initArrowEventListeners = (carousel) =>{
+    const leftArrow = carousel.querySelector('.arrows .left-arrow');
+    const rightArrow = carousel.querySelector('.arrows .right-arrow');
+    leftArrow.addEventListener('click', () =>{
+      this.moveSlideBackwards();
+      clearInterval(this.initAutoScrolling);
+    });
+    rightArrow.addEventListener('click', () =>{
+      this.moveSlideForwards();
+      clearInterval(this.initAutoScrolling);
+    });
+  }
   initAutoScrolling = setInterval(() =>{
-    const hoveredActiveSlideExists = this.carouselItems.querySelector('.active:hover');
-    if(this.activeSlide === 3 || !this.shouldAutoScroll){
+    const activeSlideIsHovered = this.carouselItems.querySelector('.active:hover');
+    if(this.activeSlide === 3){
       clearInterval(this.initAutoScrolling);
     }
-    if(!hoveredActiveSlideExists){
+    if(!activeSlideIsHovered && !document.hidden){
       this.moveSlideForwards();
     }
   }, 3000);
   moveSlideForwards = () =>{
     this.carouselItems.scrollBy({
-      top: 0,
       left: this.scrollAmount,
       behavior: 'smooth'
     });
@@ -45,7 +52,6 @@ class Carousel{
   }
   moveSlideBackwards = () =>{
     this.carouselItems.scrollBy({
-      top: 0,
       left: -this.scrollAmount,
       behavior: 'smooth'
     });
@@ -60,14 +66,13 @@ class Carousel{
     items.forEach((e) =>{
       this.carouselItems.appendChild(this.createSlide(e.name));
     });
-    this.carouselItems.children[0].classList.add('active');
   }
   createSlide = (name) =>{
     const slide = document.createElement('div');
     slide.setAttribute('class', 'carousel-item');    
-    const image = document.createElement('img');
-    image.setAttribute('src', `./assets/${name}.jpg`)
-    slide.appendChild(image);
+    const img = document.createElement('img');
+    img.setAttribute('src', `./assets/${name}.jpg`)
+    slide.appendChild(img);
     const h1 = document.createElement('h1');
     h1.innerHTML = name;
     slide.appendChild(h1);

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
 body{
   margin: 0;
   display:flex;
@@ -23,11 +25,11 @@ body{
         margin: 0 50px;
       }
       h1{
-        font-family: 'Ubuntu';
+        font-family: 'Roboto Slab', sans-serif;
         font-size: 80px;
         color: white;
         position: absolute;
-        top: 70%;
+        top: 80%;
         left: 20%;
         margin: 0;
         transform: translateY(-50%);
@@ -58,6 +60,7 @@ body{
 
     button{
       border: none;
+      font-weight: bold;
       outline-offset: 0;
       width: 40px;
       height: 40px;
@@ -70,5 +73,33 @@ body{
     .right-arrow{
       margin-right: 20px;
     }
+  }
+}
+
+.kitten-manager{
+  .filters{
+    .search-box{
+      padding: 5px;
+      outline: none;
+      margin: 10px;
+      width: 200px;
+    }
+  }
+  button{
+    margin-top: 20px;
+    background-color: rgb(143, 138, 138);
+    padding: 10px 30px;
+    border:none;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    text-transform: capitalize;
+    transition: all 0.5s ease;
+    outline: none;
+    cursor: pointer;
+  }
+  button:hover{
+    color: #fff;
+    background-color: rgb(130, 177, 238);
   }
 }
