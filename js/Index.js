@@ -1,6 +1,6 @@
-import Carousel from "./Models/Carousel.js";
+import Carousel from "./Models/Carousel/Carousel.js";
 import KittensService from './Services/KittensService.js';
-import KittenGrid from "./Models/KittenGrid.js";
+import KittenManager from "./Models/Grid/KittenManager.js";
 
 class Index{
   kittens;
@@ -11,7 +11,7 @@ class Index{
   constructor(doc){
     this.kittens = this.kittensService.get();
     this.createMainCarousel(doc);
-    this.createMainKittenGrid(doc);
+    this.createMainKittenManager(doc);
   }
   createMainCarousel = async (doc) =>{
     this.mainCarousel = new Carousel(
@@ -19,9 +19,9 @@ class Index{
       await this.getYoungestKittensAsync(4)
     );
   }
-  createMainKittenGrid = async (doc) =>{
-    this.mainKittenGrid = new KittenGrid(
-      doc.getElementById('mainKittenGrid'),
+  createMainKittenManager = async (doc) =>{
+    this.mainKittenGrid = new KittenManager(
+      doc.getElementById('mainKittenManager'),
       await this.getYoungestKittensAsync()
     );
   }

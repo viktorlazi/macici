@@ -1,6 +1,5 @@
 export default class KittenCard{
   constructor(args, buttonFunction){
-    console.log(args);
     const img = document.createElement('img');
     img.setAttribute('src', `./assets/${args.name}.jpg`);
     const p = document.createElement('p');

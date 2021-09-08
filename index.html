@@ -12,30 +12,27 @@
         <button class="right-arrow">></button>
       </div>
     </div>
-    <div class="kitten-manager">
+    <div class="kitten-manager" id="mainKittenManager">
       <div class="filters">
-        <input type="text" class="search-box" placeholder="Pretraži po imenu ..."/>
         <div class="check-boxes">
-          <div>
+          <div class="check-filter">
             <input type="checkbox" id="youngerThan6" name="youngerThan6">
             <label for="youngerThan6"> Mačić je mlađi od 6 mjeseci</label><br>
           </div>
-          <div>
+          <div class="check-filter">
             <input type="checkbox" id="youngerThan12" name="youngerThan12">
             <label for="youngerThan12"> Mačić je mlađi od 12 mjeseci</label><br>
           </div>
-          <div>
+          <div class="check-filter">
             <input type="checkbox" id="colourIsBlack" name="colourIsBlack">
             <label for="colourIsBlack"> Boja mačića je crna</label><br>
           </div>
         </div>
+        <input type="text" class="search-box" placeholder="Pretraži po imenu ..."/>
       </div>
-      <div class="kitten-grid" id="mainKittenGrid">
-        
-      </div>
-      <button class="show-more" id="show-more-kittens">Pokaži više</button>
+      <div class="kitten-grid" id="mainKittenGrid"></div>
+      <button class="show-more">Pokaži više</button>
     </div>
-
 
     <script type="module" src="./js/Index.js"></script>
   </body>

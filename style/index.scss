@@ -87,11 +87,12 @@ body{
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    padding-bottom: 20px;
     .search-box{
       padding: 5px;
       outline: none;
       margin: 10px;
-      width: 200px;
+      width: 100%;
     }
     .check-boxes{
       display:flex;
