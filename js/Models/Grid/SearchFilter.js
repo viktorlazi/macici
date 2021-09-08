@@ -8,12 +8,11 @@ export default class SearchFilter{
   
   constructor(filtersDiv, shouldUpdate){
     this.searchBox = filtersDiv.querySelector('.search-box');
-    this.searchBox.addEventListener('input', shouldUpdate);
-
     this.youngerThan6CheckBox = filtersDiv.querySelector('#youngerThan6');
     this.youngerThan12CheckBox = filtersDiv.querySelector('#youngerThan12');
     this.colourIsBlackCheckBox = filtersDiv.querySelector('#colourIsBlack');
-
+    
+    this.searchBox.addEventListener('input', shouldUpdate);
     this.youngerThan6CheckBox.addEventListener('change', () =>{
       this.calculateAgeLimit();
       shouldUpdate();
@@ -37,7 +36,7 @@ export default class SearchFilter{
     }else if(this.youngerThan12CheckBox.checked){
       this.ageLimit = 12;
     }else{
-      this.ageLimit = 1000;
+      this.ageLimit = null;
     }
   }
 }

@@ -5,6 +5,7 @@ export default class KittenManager{
   gridElement;
   allKittens;
   displayKittens = [];
+  unavailableKitten = ['alex', 'iris'];
   showingPerPage = 10;
   showingPerRow = 5;
   showMoreButton;
@@ -28,20 +29,20 @@ export default class KittenManager{
       const searchContainsName = e.name.toLowerCase().includes(this.searchFilter.searchBox.value.toLowerCase());
       const isUnderAgeLimit = this.searchFilter.ageLimit? (e.age < this.searchFilter.ageLimit) : true;
       const isRightColour = this.searchFilter.colourFilter? (e.colour.includes(this.searchFilter.colourFilter)) : true;
-
-      return searchContainsName && isUnderAgeLimit && isRightColour;
+      const isAvailable = !this.unavailableKitten.includes(e.name.toLowerCase());
+      console.log(isAvailable);
+      return searchContainsName && isUnderAgeLimit && isRightColour && isAvailable;
     });
   }
   updateDOM = () =>{
     this.gridElement.innerHTML = '';
-    this.filter().slice(0, this.showingPerPage)
-    .forEach(e => {
-      this.gridElement.appendChild(new KittenCard(
-        e, ()=>{
-          alert(e.name)
-        }
-      ));
+    const filteredKittens = this.filter();
+    filteredKittens.slice(0, this.showingPerPage).forEach(e => {
+      this.gridElement.appendChild(new KittenCard(e, null));
     });
+  }
+  buyKitten = (name) =>{
+    this.unavailableKitten.push(name.toLowerCase());
   }
   showMoreKittens = () =>{
     if(this.showingPerPage < this.allKittens.length){

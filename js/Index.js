@@ -4,33 +4,42 @@ import KittenManager from "./Models/Grid/KittenManager.js";
 
 class Index{
   kittens;
+  unavailableKittens = ['Iris'];
   mainCarousel;
   mainKittenGrid;
   kittensService = new KittensService;
 
   constructor(doc){
     this.kittens = this.kittensService.get();
-    this.createMainCarousel(doc);
-    this.createMainKittenManager(doc);
+    this.updateMainCarousel(doc);
+    this.updateMainKittenManager(doc);
   }
-  createMainCarousel = async (doc) =>{
+  updateMainCarousel = async (doc) =>{
     this.mainCarousel = new Carousel(
       doc.getElementById('mainCarousel'), 
       await this.getYoungestKittensAsync(4)
     );
   }
-  createMainKittenManager = async (doc) =>{
+  updateMainKittenManager = async (doc) =>{
     this.mainKittenGrid = new KittenManager(
       doc.getElementById('mainKittenManager'),
       await this.getYoungestKittensAsync()
     );
   }
+  buyKitten = (name) =>{
+    this.unavailableKittens.push(name);
+  }
   getYoungestKittensAsync = async (amount) =>{
-    let kittens = await this.kittens;
+    const kittens = this.filterUnavailable(await this.kittens);
     if(amount >= kittens.length){
       return this.sortByAge(kittens);
     }
     return this.sortByAge(kittens).slice(0, amount);
+  }
+  filterUnavailable = (kittens) =>{
+    return kittens.filter(e =>{
+      return !this.unavailableKittens.includes(e.name);
+    });
   }
   sortByAge = (arr) =>{
     return arr.sort((a,b)=>{

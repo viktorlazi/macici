@@ -80,9 +80,9 @@ body{
   display: flex;
   gap: 20px;
   flex-direction: column;
+  user-select: none;
   align-items: center;
   .filters{
-    user-select: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -139,7 +139,7 @@ body{
     }
   }
   button{
-    margin-top: 20px;
+    margin: 20px 0;
     background-color: rgb(143, 138, 138);
     padding: 10px 30px;
     border:none;
@@ -171,10 +171,10 @@ body{
   .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
-    width: max-content;
+    padding: 10px 40px;
+    width: 50%;
     button{
-      margin-top: 20px;
+      margin: 20px 0;
       background-color: rgb(143, 138, 138);
       padding: 10px 30px;
       border:none;
