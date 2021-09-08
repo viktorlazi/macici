@@ -6,14 +6,14 @@ class Carousel{
   scrollAmount;
   kittensInfo;
 
-  constructor(carousel, kittens, initialSlide=0){
+  constructor(carouselElement, kittens, initialSlide=0){
     this.kittensInfo = kittens;
-    this.carouselItems = carousel.querySelector('.carousel-items');
+    this.carouselItems = carouselElement.querySelector('.carousel-items');
     this.addSlidesToCarousel(kittens);
-    this.scrollAmount = carousel.offsetWidth / 2;
+    this.scrollAmount = carouselElement.offsetWidth / 2;
     this.activeSlideIndex = initialSlide < kittens.length? initialSlide:0;
     this.setInitialSlide();
-    this.initArrowEventListeners(carousel);
+    this.initArrowEventListeners(carouselElement);
     this.initAutoScrolling;
   }
   openModal = () =>{

@@ -1,4 +1,4 @@
-class KittenInfoModal{
+export default class KittenInfoModal{
   modal;
   modalContent;
   closeSpan;
@@ -6,9 +6,10 @@ class KittenInfoModal{
 
   constructor(name, colour, age){
     this.createModal();
-    this.modalContent.prepend(
+    this.modalContent.appendChild(
       this.formatContentText(name, colour, age)
     );
+    this.modalContent.appendChild(this.button);
     this.closeSpan.addEventListener('click', () =>{
       this.modal.remove();
       delete this;
@@ -46,10 +47,10 @@ class KittenInfoModal{
     close.innerHTML = '&times;';
     const button = document.createElement('button');
     button.innerHTML = 'udomi';
+    this.button = button;
 
     
     modalContent.appendChild(close);
-    modalContent.appendChild(button);
     modal.appendChild(modalContent);
     
     this.closeSpan = close;    
@@ -57,4 +58,3 @@ class KittenInfoModal{
     this.modal = modal;
   }
 }
-export default KittenInfoModal;
