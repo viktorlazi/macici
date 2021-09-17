@@ -3,31 +3,38 @@ import KittensService from './Services/KittensService.js';
 import KittenManager from "./Models/Grid/KittenManager.js";
 
 class Index{
+  document;
   kittens;
-  unavailableKittens = ['Iris'];
+  unavailableKittens = [];
   mainCarousel;
-  mainKittenGrid;
+  kittenManager;
   kittensService = new KittensService;
 
   constructor(doc){
+    this.document = doc;
     this.kittens = this.kittensService.get();
-    this.updateMainCarousel(doc);
-    this.updateMainKittenManager(doc);
+    
+    this.initMainCarousel(doc);
+    this.initMainKittenManager(doc);
   }
-  updateMainCarousel = async (doc) =>{
+  initMainCarousel = async (doc) =>{
     this.mainCarousel = new Carousel(
       doc.getElementById('mainCarousel'), 
-      await this.getYoungestKittensAsync(4)
+      await this.getYoungestKittensAsync(4),
+      this.buyKitten
     );
   }
-  updateMainKittenManager = async (doc) =>{
-    this.mainKittenGrid = new KittenManager(
+  initMainKittenManager = async (doc) =>{
+    this.kittenManager = new KittenManager(
       doc.getElementById('mainKittenManager'),
-      await this.getYoungestKittensAsync()
+      await this.getYoungestKittensAsync(),
+      this.buyKitten
     );
   }
-  buyKitten = (name) =>{
+  buyKitten = async (name) =>{
     this.unavailableKittens.push(name);
+    //this.kittenManager.removeOne(name);
+    this.kittenManager.removeOne(name);
   }
   getYoungestKittensAsync = async (amount) =>{
     const kittens = this.filterUnavailable(await this.kittens);

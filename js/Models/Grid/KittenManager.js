@@ -5,14 +5,15 @@ export default class KittenManager{
   gridElement;
   allKittens;
   displayKittens = [];
-  unavailableKitten = ['alex', 'iris'];
   showingPerPage = 10;
   showingPerRow = 5;
   showMoreButton;
   searchFilter;
+  buyKitten;
 
-  constructor(kittenManager, allKittens){
+  constructor(kittenManager, allKittens, buyKitten){
     this.allKittens = allKittens;
+    this.buyKitten = buyKitten;
     this.gridElement = kittenManager.querySelector('.kitten-grid');
     this.showMoreButton = kittenManager.querySelector('.show-more');
     this.showMoreButton.addEventListener('click', this.showMoreKittens);
@@ -22,27 +23,25 @@ export default class KittenManager{
     );
     this.filter();
     this.updateDOM();
-    return this.gridElement;
   }
   filter = () =>{
     return this.allKittens.filter(e =>{
       const searchContainsName = e.name.toLowerCase().includes(this.searchFilter.searchBox.value.toLowerCase());
       const isUnderAgeLimit = this.searchFilter.ageLimit? (e.age < this.searchFilter.ageLimit) : true;
       const isRightColour = this.searchFilter.colourFilter? (e.colour.includes(this.searchFilter.colourFilter)) : true;
-      const isAvailable = !this.unavailableKitten.includes(e.name.toLowerCase());
-      console.log(isAvailable);
-      return searchContainsName && isUnderAgeLimit && isRightColour && isAvailable;
+      return searchContainsName && isUnderAgeLimit && isRightColour;
     });
+  }
+  removeOne = (name) =>{
+    this.allKittens = this.allKittens.filter(e => e.name !== name)
+    this.updateDOM();
   }
   updateDOM = () =>{
     this.gridElement.innerHTML = '';
     const filteredKittens = this.filter();
     filteredKittens.slice(0, this.showingPerPage).forEach(e => {
-      this.gridElement.appendChild(new KittenCard(e, null));
+      this.gridElement.appendChild(new KittenCard(e, this.buyKitten));
     });
-  }
-  buyKitten = (name) =>{
-    this.unavailableKitten.push(name.toLowerCase());
   }
   showMoreKittens = () =>{
     if(this.showingPerPage < this.allKittens.length){

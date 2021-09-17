@@ -6,7 +6,9 @@ export default class KittenCard{
     p.innerHTML = args.name + ', ' + args.colour + ', ' + args.age + ' mjeseca';
     const button = document.createElement('button');
     button.innerHTML = 'udomi';
-    button.addEventListener('click', buttonFunction);
+    button.addEventListener('click', ()=>{
+      buttonFunction(args.name)
+    });
     
     const card = document.createElement('div')
     card.setAttribute('class', 'card');

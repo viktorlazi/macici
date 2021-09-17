@@ -5,9 +5,11 @@ class Carousel{
   activeSlideIndex;
   scrollAmount;
   kittensInfo;
+  buyKitten;
 
-  constructor(carouselElement, kittens, initialSlide=0){
+  constructor(carouselElement, kittens, buyKitten, initialSlide=0){
     this.kittensInfo = kittens;
+    this.buyKitten = buyKitten;
     this.carouselItems = carouselElement.querySelector('.carousel-items');
     this.addSlidesToCarousel(kittens);
     this.scrollAmount = carouselElement.offsetWidth / 2;
