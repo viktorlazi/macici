@@ -18,6 +18,9 @@ class Carousel{
     this.initArrowEventListeners(carouselElement);
     this.initAutoScrolling;
   }
+  removeOne = () =>{
+    
+  }
   openModal = () =>{
     const kittenInfo = this.kittensInfo[this.activeSlideIndex];
     document.body.appendChild(new KittenInfoModal(

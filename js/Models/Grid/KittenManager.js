@@ -6,7 +6,6 @@ export default class KittenManager{
   allKittens;
   displayKittens = [];
   showingPerPage = 10;
-  showingPerRow = 5;
   showMoreButton;
   searchFilter;
   buyKitten;
@@ -45,7 +44,7 @@ export default class KittenManager{
   }
   showMoreKittens = () =>{
     if(this.showingPerPage < this.allKittens.length){
-      this.showingPerPage += this.showingPerRow;
+      this.showingPerPage = this.allKittens.length;
     }else{
       this.showingPerPage = 10;
     }

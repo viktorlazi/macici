@@ -33,7 +33,6 @@ class Index{
   }
   buyKitten = async (name) =>{
     this.unavailableKittens.push(name);
-    //this.kittenManager.removeOne(name);
     this.kittenManager.removeOne(name);
   }
   getYoungestKittensAsync = async (amount) =>{

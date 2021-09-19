@@ -1,4 +1,6 @@
 export default class KittenCard{
+  confirmation = false;
+
   constructor(args, buttonFunction){
     const img = document.createElement('img');
     img.setAttribute('src', `./assets/${args.name}.jpg`);
@@ -6,8 +8,8 @@ export default class KittenCard{
     p.innerHTML = args.name + ', ' + args.colour + ', ' + args.age + ' mjeseca';
     const button = document.createElement('button');
     button.innerHTML = 'udomi';
-    button.addEventListener('click', ()=>{
-      buttonFunction(args.name)
+    button.addEventListener('click', () =>{
+      this.buttonConfirmation(button, args.name, buttonFunction);
     });
     
     const card = document.createElement('div')
@@ -16,5 +18,28 @@ export default class KittenCard{
     card.appendChild(p);
     card.appendChild(button);
     return card;
+  }
+  buttonConfirmation = (button, name, buttonFunction) =>{
+    if(this.confirmation){
+      buttonFunction(name);
+      return;
+    }
+    this.confirmation = true;
+    button.innerHTML = 'POTVRDI';
+
+    setTimeout(() =>{
+      let time = 0;
+      const counter = setInterval(() =>{
+        button.innerHTML = 10-time;
+        time += 1;
+        if(time >= 9){
+          clearInterval(counter);
+        }
+      }, 100);
+    }, 1000);
+    setTimeout(() =>{
+      this.confirmation = false;
+      button.innerHTML = 'udomi';
+    }, 2000);    
   }
 }
