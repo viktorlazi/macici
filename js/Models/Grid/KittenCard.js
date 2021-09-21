@@ -30,16 +30,14 @@ export default class KittenCard{
     setTimeout(() =>{
       let time = 0;
       const counter = setInterval(() =>{
-        button.innerHTML = 10-time;
+        button.innerHTML = 'POTVRDI ' + (3-time);
         time += 1;
-        if(time >= 9){
+        if(time > 3){
           clearInterval(counter);
+          this.confirmation = false;
+          button.innerHTML = 'udomi';
         }
-      }, 100);
+      }, 333);
     }, 1000);
-    setTimeout(() =>{
-      this.confirmation = false;
-      button.innerHTML = 'udomi';
-    }, 2000);    
   }
 }

@@ -18,8 +18,15 @@ class Carousel{
     this.initArrowEventListeners(carouselElement);
     this.initAutoScrolling;
   }
-  removeOne = () =>{
-    
+  update = (newKittens) =>{
+    [...this.carouselItems.children].forEach(e => {
+      console.log(e.getAttribute('name'))
+    });
+    console.log(this.carouselItems)
+    this.carouselItems.innerHTML = '';
+    this.addSlidesToCarousel(newKittens);
+    this.setInitialSlide();
+    this.initAutoScrolling;
   }
   openModal = () =>{
     const kittenInfo = this.kittensInfo[this.activeSlideIndex];
@@ -100,6 +107,7 @@ class Carousel{
   createSlideElement = (name) =>{
     const slide = document.createElement('div');
     slide.setAttribute('class', 'carousel-item');    
+    slide.setAttribute('name', name);
     const img = document.createElement('img');
     img.setAttribute('src', `./assets/${name}.jpg`)
     slide.appendChild(img);

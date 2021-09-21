@@ -18,6 +18,7 @@ class Index{
     this.initMainKittenManager(doc);
   }
   initMainCarousel = async (doc) =>{
+    doc.getElementById('mainCarousel').querySelector('.carousel-items').innerHTML = '';
     this.mainCarousel = new Carousel(
       doc.getElementById('mainCarousel'), 
       await this.getYoungestKittensAsync(4),
@@ -34,6 +35,7 @@ class Index{
   buyKitten = async (name) =>{
     this.unavailableKittens.push(name);
     this.kittenManager.removeOne(name);
+    this.mainCarousel.update(await this.getYoungestKittensAsync(4));
   }
   getYoungestKittensAsync = async (amount) =>{
     const kittens = this.filterUnavailable(await this.kittens);
