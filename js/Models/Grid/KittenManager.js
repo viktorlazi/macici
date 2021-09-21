@@ -2,20 +2,21 @@ import KittenCard from "./KittenCard.js";
 import SearchFilter from "./SearchFilter.js";
 
 export default class KittenManager{
-  gridElement;
+  grid;
   allKittens;
-  displayKittens = [];
   showingPerPage = 10;
   showMoreButton;
   searchFilter;
   buyKitten;
+  showMoreButton;
 
   constructor(kittenManager, allKittens, buyKitten){
     this.allKittens = allKittens;
     this.buyKitten = buyKitten;
-    this.gridElement = kittenManager.querySelector('.kitten-grid');
     this.showMoreButton = kittenManager.querySelector('.show-more');
-    this.showMoreButton.addEventListener('click', this.showMoreKittens);
+    this.grid = kittenManager.querySelector('.kitten-grid');
+    this.showMoreButton = kittenManager.querySelector('.show-more');
+    this.showMoreButton.addEventListener('click', this.showMoreKittensButtonHendler);
     this.searchFilter = new SearchFilter(
       kittenManager.querySelector('.filters'),
       this.updateDOM
@@ -36,13 +37,18 @@ export default class KittenManager{
     this.updateDOM();
   }
   updateDOM = () =>{
-    this.gridElement.innerHTML = '';
+    this.grid.innerHTML = '';
     const filteredKittens = this.filter();
     filteredKittens.slice(0, this.showingPerPage).forEach(e => {
-      this.gridElement.appendChild(new KittenCard(e, this.buyKitten));
+      this.grid.appendChild(new KittenCard(e, this.buyKitten));
     });
+    if(this.showingPerPage > filteredKittens.length){
+      this.showMoreButton.style.visibility = 'hidden';
+    }else{
+      this.showMoreButton.style.visibility = 'visible';
+    }
   }
-  showMoreKittens = () =>{
+  showMoreKittensButtonHendler = () =>{
     if(this.showingPerPage < this.allKittens.length){
       this.showingPerPage = this.allKittens.length;
     }else{
