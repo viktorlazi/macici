@@ -3,8 +3,12 @@ export default class KittenInfoModal{
   modalContent;
   closeSpan;
   button;
+  buyKitten;
 
-  constructor(name, colour, age){
+  constructor(name, colour, age, buyKitten){
+    this.buyKitten = () =>{
+      buyKitten(name);
+    };
     this.createModal();
     this.modalContent.appendChild(
       this.formatContentText(name, colour, age)
@@ -47,6 +51,11 @@ export default class KittenInfoModal{
     close.innerHTML = '&times;';
     const button = document.createElement('button');
     button.innerHTML = 'udomi';
+    button.addEventListener('click', () =>{
+      this.buyKitten();
+      this.modal.remove();
+      delete this;
+    });
     this.button = button;
 
     

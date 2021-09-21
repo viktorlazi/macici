@@ -21,7 +21,6 @@ export default class KittenManager{
       kittenManager.querySelector('.filters'),
       this.updateDOM
     );
-    this.filter();
     this.updateDOM();
   }
   filter = () =>{

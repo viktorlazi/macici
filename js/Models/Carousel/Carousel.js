@@ -4,11 +4,11 @@ class Carousel{
   carouselItems;
   activeSlideIndex;
   scrollAmount;
-  kittensInfo;
+  kittens;
   buyKitten;
 
   constructor(carouselElement, kittens, buyKitten, initialSlide=0){
-    this.kittensInfo = kittens;
+    this.kittens = kittens;
     this.buyKitten = buyKitten;
     this.carouselItems = carouselElement.querySelector('.carousel-items');
     this.addSlidesToCarousel(kittens);
@@ -19,21 +19,19 @@ class Carousel{
     this.initAutoScrolling;
   }
   update = (newKittens) =>{
-    [...this.carouselItems.children].forEach(e => {
-      console.log(e.getAttribute('name'))
-    });
-    console.log(this.carouselItems)
+    this.kittens = newKittens;
     this.carouselItems.innerHTML = '';
     this.addSlidesToCarousel(newKittens);
     this.setInitialSlide();
     this.initAutoScrolling;
   }
   openModal = () =>{
-    const kittenInfo = this.kittensInfo[this.activeSlideIndex];
+    const kittenInfo = this.kittens[this.activeSlideIndex];
     document.body.appendChild(new KittenInfoModal(
       kittenInfo.name,
       kittenInfo.colour,
-      kittenInfo.age
+      kittenInfo.age,
+      this.buyKitten
     ));
   }
   setInitialSlide = () =>{
