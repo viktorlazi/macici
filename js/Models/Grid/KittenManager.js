@@ -2,6 +2,7 @@ import KittenCard from "./KittenCard.js";
 import SearchFilter from "./SearchFilter.js";
 
 export default class KittenManager{
+  kittenManager;
   grid;
   allKittens;
   showingPerPage = 10;
@@ -11,6 +12,7 @@ export default class KittenManager{
   showMoreButton;
 
   constructor(kittenManager, allKittens, buyKitten){
+    this.kittenManager = kittenManager;
     this.allKittens = allKittens;
     this.buyKitten = buyKitten;
     this.showMoreButton = kittenManager.querySelector('.show-more');
@@ -36,16 +38,31 @@ export default class KittenManager{
     this.updateDOM();
   }
   updateDOM = () =>{
+    console.log(this.allKittens)
     this.grid.innerHTML = '';
     const filteredKittens = this.filter();
     filteredKittens.slice(0, this.showingPerPage).forEach(e => {
       this.grid.appendChild(new KittenCard(e, this.buyKitten));
     });
+    if(this.allKittens.length === 0){
+      this.searchFilter.filtersDiv.style.visibility = 'hidden';
+      this.toggleNothingToDisplayMsg();
+    }
     if(this.showingPerPage > filteredKittens.length){
       this.showMoreButton.style.visibility = 'hidden';
     }else{
       this.showMoreButton.style.visibility = 'visible';
     }
+  }
+  toggleNothingToDisplayMsg = () =>{
+    const msgExists = this.kittenManager.querySelector('h1');
+    if(msgExists){
+      this.kittenManager.removeChild('h1');
+      return;
+    }
+    const noDisplay = document.createElement('h1');
+    noDisplay.innerHTML = 'Nema više mačića'
+    this.kittenManager.appendChild(noDisplay);
   }
   showMoreKittensButtonHendler = () =>{
     if(this.showingPerPage < this.allKittens.length){

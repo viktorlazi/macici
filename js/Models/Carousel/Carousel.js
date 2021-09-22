@@ -8,7 +8,7 @@ class Carousel{
   kittens;
   buyKitten;
 
-  constructor(carousel, kittens, buyKitten, initialSlide=0){
+  constructor(carousel, kittens, buyKitten, initialSlide = 0){
     this.kittens = kittens;
     this.buyKitten = buyKitten;
     this.carousel = carousel;
@@ -21,12 +21,13 @@ class Carousel{
     this.initAutoScrolling;
   }
   update = (newKittens) =>{
-    this.kittens = newKittens;
-    this.checkAmountOfSlides();
     this.carouselItems.innerHTML = '';
-    this.addSlidesToCarousel(newKittens);
-    this.setInitialSlide();
-    this.initAutoScrolling;
+    this.kittens = newKittens;
+    if(this.checkAmountOfSlides()){
+      this.addSlidesToCarousel(newKittens);
+      this.setInitialSlide();
+      this.initAutoScrolling;
+    }
   }
   checkAmountOfSlides = () =>{
     const amountOfSlides = this.kittens.length;
@@ -38,7 +39,7 @@ class Carousel{
     if(this.activeSlideIndex > amountOfSlides - 1){
       this.activeSlideIndex = amountOfSlides - 1;
     }
-
+    return amountOfSlides;
   }
   openModal = () =>{
     const kittenInfo = this.kittens[this.activeSlideIndex];

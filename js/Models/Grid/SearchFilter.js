@@ -1,4 +1,5 @@
 export default class SearchFilter{
+  filtersDiv;
   searchBox;
   ageLimit;
   colourFilter;
@@ -7,6 +8,7 @@ export default class SearchFilter{
   colourIsBlackCheckBox;
   
   constructor(filtersDiv, shouldUpdate){
+    this.filtersDiv = filtersDiv;
     this.searchBox = filtersDiv.querySelector('.search-box');
     this.youngerThan6CheckBox = filtersDiv.querySelector('#youngerThan6');
     this.youngerThan12CheckBox = filtersDiv.querySelector('#youngerThan12');
