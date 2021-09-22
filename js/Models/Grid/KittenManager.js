@@ -61,7 +61,7 @@ export default class KittenManager{
       return;
     }
     const noDisplay = document.createElement('h1');
-    noDisplay.innerHTML = 'Nema više mačića'
+    noDisplay.innerHTML = 'Svi mačići su udomljeni :)'
     this.kittenManager.appendChild(noDisplay);
   }
   showMoreKittensButtonHendler = () =>{

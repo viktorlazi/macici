@@ -52,12 +52,9 @@ export default class KittenInfoModal{
     const button = document.createElement('button');
     button.innerHTML = 'udomi';
     button.addEventListener('click', () =>{
-      this.buyKitten();
-      this.modal.remove();
-      delete this;
+      this.buttonConfirmation(button);
     });
     this.button = button;
-
     
     modalContent.appendChild(close);
     modal.appendChild(modalContent);
@@ -65,5 +62,26 @@ export default class KittenInfoModal{
     this.closeSpan = close;    
     this.modalContent = modalContent;
     this.modal = modal;
+  }
+  buttonConfirmation = (button) =>{
+    if(this.confirmation){
+      this.buyKitten();
+      this.modal.remove();
+      return;
+    }
+    this.confirmation = true;
+    button.innerHTML = 'POTVRDI';
+    setTimeout(() =>{
+      let time = 0;
+      const counter = setInterval(() =>{
+        button.innerHTML = 'POTVRDI ' + (3 - time);
+        time += 1;
+        if(time > 3){
+          clearInterval(counter);
+          this.confirmation = false;
+          button.innerHTML = 'udomi';
+        }
+      }, 333);
+    }, 1000);
   }
 }

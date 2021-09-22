@@ -26,11 +26,10 @@ export default class KittenCard{
     }
     this.confirmation = true;
     button.innerHTML = 'POTVRDI';
-
     setTimeout(() =>{
       let time = 0;
       const counter = setInterval(() =>{
-        button.innerHTML = 'POTVRDI ' + (3-time);
+        button.innerHTML = 'POTVRDI ' + (3 - time);
         time += 1;
         if(time > 3){
           clearInterval(counter);
