@@ -1,29 +1,44 @@
 import KittenInfoModal from "./KittenInfoModal.js";
 
 class Carousel{
+  carousel;
   carouselItems;
   activeSlideIndex;
   scrollAmount;
   kittens;
   buyKitten;
 
-  constructor(carouselElement, kittens, buyKitten, initialSlide=0){
+  constructor(carousel, kittens, buyKitten, initialSlide=0){
     this.kittens = kittens;
     this.buyKitten = buyKitten;
-    this.carouselItems = carouselElement.querySelector('.carousel-items');
+    this.carousel = carousel;
+    this.carouselItems = carousel.querySelector('.carousel-items');
     this.addSlidesToCarousel(kittens);
-    this.scrollAmount = carouselElement.offsetWidth / 2;
+    this.scrollAmount = carousel.offsetWidth / 2;
     this.activeSlideIndex = initialSlide < kittens.length? initialSlide:0;
     this.setInitialSlide();
-    this.initArrowEventListeners(carouselElement);
+    this.initArrowEventListeners(carousel);
     this.initAutoScrolling;
   }
   update = (newKittens) =>{
     this.kittens = newKittens;
+    this.checkAmountOfSlides();
     this.carouselItems.innerHTML = '';
     this.addSlidesToCarousel(newKittens);
     this.setInitialSlide();
     this.initAutoScrolling;
+  }
+  checkAmountOfSlides = () =>{
+    const amountOfSlides = this.kittens.length;
+    if(amountOfSlides === 0){
+      this.carousel.style.visibility = 'hidden';
+    }else{
+      this.carousel.style.visibility = 'visible';
+    }
+    if(this.activeSlideIndex > amountOfSlides - 1){
+      this.activeSlideIndex = amountOfSlides - 1;
+    }
+
   }
   openModal = () =>{
     const kittenInfo = this.kittens[this.activeSlideIndex];
@@ -63,7 +78,7 @@ class Carousel{
   }
   initAutoScrolling = setInterval(() =>{
     const activeSlideIsHoveredIndex = this.carouselItems.querySelector('.active:hover');
-    if(this.activeSlideIndex === 3){
+    if(this.activeSlideIndex === this.kittens.length - 1){
       clearInterval(this.initAutoScrolling);
     }
     if(!activeSlideIsHoveredIndex && !document.hidden){
@@ -75,7 +90,7 @@ class Carousel{
       left: this.scrollAmount,
       behavior: 'smooth'
     });
-    if(this.activeSlideIndex < 3){
+    if(this.activeSlideIndex < this.kittens.length - 1){
       this.removeClickListenerForActiveSlide();
       this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
       this.carouselItems.children[this.activeSlideIndex+1].classList.add('active');
