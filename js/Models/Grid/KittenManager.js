@@ -38,7 +38,6 @@ export default class KittenManager{
     this.updateDOM();
   }
   updateDOM = () =>{
-    console.log(this.allKittens)
     this.grid.innerHTML = '';
     const filteredKittens = this.getFilteredKittens();
     filteredKittens.slice(0, this.showingPerPage).forEach(e => {
