@@ -25,7 +25,7 @@ export default class KittenManager{
     );
     this.updateDOM();
   }
-  filter = () =>{
+  getFilteredKittens = () =>{
     return this.allKittens.filter(e =>{
       const searchContainsName = e.name.toLowerCase().includes(this.searchFilter.searchBox.value.toLowerCase());
       const isUnderAgeLimit = this.searchFilter.ageLimit? (e.age < this.searchFilter.ageLimit) : true;
@@ -40,7 +40,7 @@ export default class KittenManager{
   updateDOM = () =>{
     console.log(this.allKittens)
     this.grid.innerHTML = '';
-    const filteredKittens = this.filter();
+    const filteredKittens = this.getFilteredKittens();
     filteredKittens.slice(0, this.showingPerPage).forEach(e => {
       this.grid.appendChild(new KittenCard(e, this.buyKitten));
     });
