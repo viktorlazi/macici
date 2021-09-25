@@ -102,9 +102,11 @@ class Carousel{
     });
     if(this.activeSlideIndex < this.kittens.length - 1){
       this.removeClickListenerForActiveSlide();
-      this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
-      this.carouselItems.children[this.activeSlideIndex+1].classList.add('active');
-      this.activeSlideIndex++;
+      setTimeout(()=>{
+        this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
+        this.carouselItems.children[this.activeSlideIndex+1].classList.add('active');
+        this.activeSlideIndex++;
+      }, 200);
       this.setClickListenerForActiveSlide();
     }
   }
@@ -119,9 +121,11 @@ class Carousel{
     });
     if(this.activeSlideIndex){
       this.removeClickListenerForActiveSlide();
-      this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
-      this.carouselItems.children[this.activeSlideIndex-1].classList.add('active');
-      this.activeSlideIndex--;
+      setTimeout(()=>{
+        this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
+        this.carouselItems.children[this.activeSlideIndex-1].classList.add('active');
+        this.activeSlideIndex--;
+      }, 200);
       this.setClickListenerForActiveSlide();
     }
   }
@@ -129,7 +133,7 @@ class Carousel{
     this.scrollingStatus = 'active';
     setTimeout(() =>{
       this.scrollingStatus = 'inactive';
-    }, 500);
+    }, 700);
   }
   addSlidesToCarousel = (items) =>{
     this.carouselItems.innerHTML = '';

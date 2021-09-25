@@ -39,7 +39,7 @@ body {
   transform: translateY(-50%);
 }
 .carousel .carousel-items .carousel-item.active {
-  transition: transform 2s;
+  transition: transform 2s, opacity 0.5s;
   opacity: 1;
   z-index: 1;
   cursor: pointer;
