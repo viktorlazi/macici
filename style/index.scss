@@ -11,8 +11,7 @@ body{
   position: relative;
   width: 800px;
   margin: 50px 0;
-  user-select: none;
-  
+  user-select: none;  
   .carousel-items{
     display:flex;
     overflow: hidden;
@@ -82,6 +81,7 @@ body{
   flex-direction: column;
   user-select: none;
   align-items: center;
+  align-self: center;
   .filters{
     display: flex;
     flex-direction: column;
@@ -128,8 +128,6 @@ body{
       box-shadow: 5px 5px 10px 6px rgb(190, 190, 190);
       img{
         width: 100%;
-        width: 200px;
-        height: 200px;
       }
       p{
         margin: 0;
@@ -206,3 +204,128 @@ body{
   }
 }
 
+@media only screen and (max-width: 1200px) and (min-width: 1001px){
+  .kitten-manager{
+    .kitten-grid{
+      grid-template-columns: repeat(4, 1fr);
+      .card{
+        width: 20vw;
+      }
+    }
+  } 
+}
+@media only screen and (max-width: 1000px) and (min-width: 961px){
+  .kitten-manager{
+    .kitten-grid{
+      grid-template-columns: repeat(3, 1fr);
+      .card{
+        width: 30vw;
+      }
+    }
+  } 
+}
+@media only screen and (max-width: 960px){
+  .carousel{
+    width: 75vw;
+    .carousel-items{
+      .carousel-item{
+        img{
+          width: 60vw;
+          margin: 0 10vw;
+        }
+        h1{
+          font-family: 'Roboto Slab', sans-serif;
+          font-size: 80px;
+        }
+        &:first-child{
+          margin-left: 0vw;
+        }
+        &:last-child{
+          margin-right: 0vw;
+        }
+      }
+    }
+  }
+  .arrows button{
+    z-index: 3;
+  }
+  .kitten-manager{
+    width: 100vw;
+    .kitten-grid{
+      grid-template-columns: 1fr 1fr 1fr;
+      .card{
+        width: 30vw;
+      }
+    }
+  } 
+}
+@media only screen and (max-width: 660px){
+  .carousel{
+    width: 75vw;
+    .carousel-items{
+      .carousel-item{
+        img{
+          width: 60vw;
+          margin: 0 10vw;
+        }
+        h1{
+          font-family: 'Roboto Slab', sans-serif;
+          font-size: 80px;
+        }
+        &:first-child{
+          margin-left: 0vw;
+        }
+        &:last-child{
+          margin-right: 0vw;
+        }
+      }
+    }
+  }
+  .arrows button{
+    z-index: 3;
+  }
+  .kitten-manager{
+    width: 100vw;
+    .kitten-grid{
+      grid-template-columns: 1fr 1fr;
+      .card{
+        width: 40vw;
+      }
+    }
+  } 
+}
+@media only screen and (max-width: 420px){
+  .carousel{
+    width: 75vw;
+    .carousel-items{
+      .carousel-item{
+        img{
+          width: 60vw;
+          margin: 0 10vw;
+        }
+        h1{
+          font-family: 'Roboto Slab', sans-serif;
+          font-size: 80px;
+        }
+        &:first-child{
+          margin-left: 0vw;
+        }
+        &:last-child{
+          margin-right: 0vw;
+        }
+      }
+    }
+  }
+  .arrows button{
+    z-index: 3;
+  }
+  .kitten-manager{
+    width: 100vw;
+    .kitten-grid{
+      grid-template-columns: 1fr;
+      .card{
+        width: 90vw;
+      }
+    }
+  } 
+}

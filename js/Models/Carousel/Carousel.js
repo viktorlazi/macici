@@ -4,9 +4,9 @@ class Carousel{
   carousel;
   carouselItems;
   activeSlideIndex;
-  scrollAmount;
   kittens;
   buyKitten;
+  scrollingStatus = 'inactive';
 
   constructor(carousel, kittens, buyKitten, initialSlide = 0){
     this.kittens = kittens;
@@ -14,11 +14,16 @@ class Carousel{
     this.carousel = carousel;
     this.carouselItems = carousel.querySelector('.carousel-items');
     this.addSlidesToCarousel(kittens);
-    this.scrollAmount = carousel.offsetWidth / 2;
     this.activeSlideIndex = initialSlide < kittens.length? initialSlide:0;
     this.setInitialSlide();
     this.initArrowEventListeners(carousel);
     this.initAutoScrolling;
+  }
+  getScrollAmount = () =>{
+    const slideWidth = 
+    this.carousel.querySelector('.carousel-items')
+    .children[0].offsetWidth;
+    return slideWidth;
   }
   update = (newKittens) =>{
     this.carouselItems.innerHTML = '';
@@ -52,7 +57,7 @@ class Carousel{
   }
   setInitialSlide = () =>{
     this.carouselItems.scrollTo({
-      left: this.scrollAmount*this.activeSlideIndex
+      left: this.getScrollAmount()*this.activeSlideIndex
     });
     this.carouselItems.children[this.activeSlideIndex].classList.add('active');
     this.setClickListenerForActiveSlide();
@@ -87,8 +92,12 @@ class Carousel{
     }
   }, 3000);
   moveSlideForwards = () =>{
+    if(this.scrollingStatus === 'active'){
+      return;
+    }
+    this.setScrollingStatusActive();
     this.carouselItems.scrollBy({
-      left: this.scrollAmount,
+      left: this.getScrollAmount(),
       behavior: 'smooth'
     });
     if(this.activeSlideIndex < this.kittens.length - 1){
@@ -100,8 +109,12 @@ class Carousel{
     }
   }
   moveSlideBackwards = () =>{
+    if(this.scrollingStatus === 'active'){
+      return;
+    }
+    this.setScrollingStatusActive();
     this.carouselItems.scrollBy({
-      left: -this.scrollAmount,
+      left: -this.getScrollAmount(),
       behavior: 'smooth'
     });
     if(this.activeSlideIndex){
@@ -111,6 +124,12 @@ class Carousel{
       this.activeSlideIndex--;
       this.setClickListenerForActiveSlide();
     }
+  }
+  setScrollingStatusActive = () =>{
+    this.scrollingStatus = 'active';
+    setTimeout(() =>{
+      this.scrollingStatus = 'inactive';
+    }, 500);
   }
   addSlidesToCarousel = (items) =>{
     this.carouselItems.innerHTML = '';
