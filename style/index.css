@@ -135,6 +135,7 @@ body {
   cursor: pointer;
   height: 20px;
   width: 20px;
+  margin-right: 20px;
 }
 .kitten-manager .filters .check-boxes label {
   cursor: pointer;
@@ -230,9 +231,6 @@ body {
   color: #fff;
   background-color: #82b1ee;
 }
-.modal .modal-content .close {
-  font-size: 30px;
-}
 .modal .close {
   color: #aaaaaa;
   float: right;
@@ -288,6 +286,13 @@ body {
   .kitten-manager .kitten-grid .card {
     width: 15vw;
   }
+  .kitten-manager .filters .search-box, .kitten-manager .filters .check-boxes {
+    font-size: 25px;
+  }
+  .kitten-manager .filters .check-boxes input {
+    width: 40px;
+    height: 40px;
+  }
 }
 @media only screen and (max-width: 1200px) and (min-width: 1001px) {
   .kitten-manager .kitten-grid {
@@ -340,6 +345,11 @@ body {
   .kitten-manager .filters .search-box,
 .kitten-manager .filters .check-boxes {
     max-width: 600px;
+  }
+  .kitten-manager .filters .search-box input,
+.kitten-manager .filters .check-boxes input {
+    width: 30px;
+    height: 30px;
   }
 }
 @media only screen and (max-width: 660px) {
@@ -402,7 +412,7 @@ body {
   }
   .carousel .carousel-items .carousel-item h1 {
     font-family: "Roboto Slab", sans-serif;
-    font-size: 60px;
+    font-size: 50px;
   }
   .carousel .carousel-items .carousel-item:first-child {
     margin-left: 0vw;
