@@ -17,7 +17,7 @@ body{
   margin: 20px 0;
   user-select: none;  
   .carousel-items{
-    display:flex;
+    display: flex;
     overflow: hidden;
     .carousel-item{
       position: relative;
@@ -60,7 +60,6 @@ body{
     justify-content: space-between;
     top:50%;
     width: 100%;
-
     button{
       font-family: serif;
       border: none;
