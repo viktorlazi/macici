@@ -18,6 +18,14 @@ class Carousel{
     this.setInitialSlide();
     this.initArrowEventListeners(carousel);
     this.initAutoScrolling;
+    this.initWindowResizeScrollHandler();
+  }
+  initWindowResizeScrollHandler = () =>{
+    window.addEventListener('resize', () =>{
+      this.carouselItems.scrollTo({
+        left: this.getScrollAmount() * this.activeSlideIndex
+      }); // scrolls to active slide no matter the carousel width
+    });
   }
   getScrollAmount = () =>{
     const slideWidth = 
@@ -95,9 +103,12 @@ class Carousel{
     if(this.scrollingStatus === 'active'){
       return;
     }
+    if(this.activeSlideIndex === this.carouselItems.children.length -1){
+      return;
+    }
     this.setScrollingStatusActive();
-    this.carouselItems.scrollBy({
-      left: this.getScrollAmount(),
+    this.carouselItems.scrollTo({
+      left: this.getScrollAmount() * (this.activeSlideIndex+1),
       behavior: 'smooth'
     });
     if(this.activeSlideIndex < this.kittens.length - 1){
@@ -114,9 +125,12 @@ class Carousel{
     if(this.scrollingStatus === 'active'){
       return;
     }
+    if(this.activeSlideIndex === 0){
+      return;
+    }
     this.setScrollingStatusActive();
-    this.carouselItems.scrollBy({
-      left: -this.getScrollAmount(),
+    this.carouselItems.scrollTo({
+      left: this.getScrollAmount() * (this.activeSlideIndex-1),
       behavior: 'smooth'
     });
     if(this.activeSlideIndex){

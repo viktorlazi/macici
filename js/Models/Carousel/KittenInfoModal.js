@@ -16,12 +16,10 @@ export default class KittenInfoModal{
     this.modalContent.appendChild(this.button);
     this.closeSpan.addEventListener('click', () =>{
       this.modal.remove();
-      delete this;
     });
     window.addEventListener('click', (e) =>{
       if(e.target == this.modal){
         this.modal.remove();
-        delete this;
       }
     });
     return this.modal;
