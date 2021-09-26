@@ -73,10 +73,12 @@ class Carousel{
   setClickListenerForActiveSlide = () =>{
     this.carouselItems.children[this.activeSlideIndex]
     .addEventListener('click', this.openModal);
+    console.log('on' + this.activeSlideIndex);
   }
   removeClickListenerForActiveSlide = () =>{
     this.carouselItems.children[this.activeSlideIndex]
     .removeEventListener('click', this.openModal);
+    console.log('off' + this.activeSlideIndex);
   }
   initArrowEventListeners = (carousel) =>{
     const leftArrow = carousel.querySelector('.arrows .left-arrow');
@@ -117,8 +119,8 @@ class Carousel{
         this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
         this.carouselItems.children[this.activeSlideIndex+1].classList.add('active');
         this.activeSlideIndex++;
+        this.setClickListenerForActiveSlide();
       }, 200);
-      this.setClickListenerForActiveSlide();
     }
   }
   moveSlideBackwards = () =>{
@@ -139,8 +141,8 @@ class Carousel{
         this.carouselItems.children[this.activeSlideIndex].classList.remove('active');
         this.carouselItems.children[this.activeSlideIndex-1].classList.add('active');
         this.activeSlideIndex--;
+        this.setClickListenerForActiveSlide();
       }, 200);
-      this.setClickListenerForActiveSlide();
     }
   }
   setScrollingStatusActive = () =>{
